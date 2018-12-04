@@ -39,6 +39,6 @@ def links_relay(L, x, y, z, p):
     # received power
     received_power = p * gain
 
-    results = np.array([d, theta, plos, pnlos, pathloss, gain, received_power])
+    # results = np.array([d, theta, plos, pnlos, pathloss, gain, received_power])
 
-    return results
+    return d, theta, plos, pnlos, pathloss, gain, received_power

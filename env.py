@@ -42,6 +42,7 @@ for i in range(int(math.sqrt(nOfB))):
 
 
 
+''' PLOTS AND INFORMATION '''
 print("(x1, y1):", "(", buildings[0].x1, ",", buildings[0].y1, ")")
 print("(x2, y2):", "(", buildings[0].x2, ",", buildings[0].y1, ")")
 print("h:", buildings[0].h)

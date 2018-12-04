@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 # importing local files
 import uav_location
@@ -16,21 +17,18 @@ for h in range(500, 510, 11):
     plt.scatter(L['x'], L['y'])
     plt.show()
 
-    vehicle_locations = random_vehicle_locations.random_vehicle_locations()
-    x_s = vehicle_locations[0]
-    y_s = vehicle_locations[1]
-    x_v1 = vehicle_locations[2]
-    y_v1 = vehicle_locations[3]
-    x_v2 = vehicle_locations[4]
-    y_v2 = vehicle_locations[5]
+    x_s, y_s, x_v1, y_v1, x_v2, y_v2 = random_vehicle_locations.random_vehicle_locations()
+    print("xs: {}, ys: {}".format(x_s, y_s))
+    print("x1: {}, y1: {}".format(x_v1, y_v1))
+    print("x2: {}, y2: {}".format(x_v2, y_v2))
 
-    # plt.scatter(x_s,y_s,c="b",label="source")
-    # plt.scatter(x_v1,y_v1,c="r",label="V2V 1")
-    # plt.scatter(x_v2,y_v2,c="y",label="V2V 2")
-    # plt.legend()
-    # plt.xlim(-500, 500)
-    # plt.ylim(-500, 500)
-    # plt.show()
+    plt.scatter(x_s,y_s,c="b",label="source")
+    plt.scatter(x_v1,y_v1,c="r",label="V2V 1")
+    plt.scatter(x_v2,y_v2,c="y",label="V2V 2")
+    plt.legend()
+    plt.xlim(-550, 550)
+    plt.ylim(-550, 550)
+    plt.show()
 
     # channel gain, distance, and pathloss between source and V2V vehicles
     sv1 = links_ground(x_s,y_s,x_v1,y_v1)
@@ -50,63 +48,21 @@ for h in range(500, 510, 11):
     pathloss_v2v = v2v[2]
 
     # channel information for the link SR
-    sr = links_relay(L, x_s, y_s, 0, Init.p_s)
-    d_sr = sr[0]
-    theta_sr = sr[1]
-    plos_sr = sr[2]
-    pnlos_sr = sr[3]
-    pathloss_sr = sr[4]
-    gain_sr = sr[5]
-    received_power_sr = sr[6]
+    d_sr, theta_sr, plos_sr, pnlos_sr, pathloss_sr, gain_sr, received_power_sr = links_relay(L, x_s, y_s, 0, Init.p_s)
 
     # channel information for the link V1R
-    v1r = links_relay(L, x_v1, y_v1, 0, Init.p_v1)
-    d_v1r = v1r[0]
-    theta_v1r = v1r[1]
-    plos_v1r = v1r[2]
-    pnlos_v1r = v1r[3]
-    pathloss_v1r = v1r[4]
-    gain_v1r = v1r[5]
-    received_power_v1r = v1r[6]
+    d_v1r, theta_v1r, plos_v1r, pnlos_v1r, pathloss_v1r, gain_v1r, received_power_v1r = links_relay(L, x_v1, y_v1, 0, Init.p_v1)
 
     # channel information for the link V2R
-    v2r = links_relay(L, x_v2, y_v2, 0, Init.p_v2)
-    d_v2r = v1r[0]
-    theta_v2r = v2r[1]
-    plos_v2r = v2r[2]
-    pnlos_v2r = v2r[3]
-    pathloss_v2r = v2r[4]
-    gain_v2r = v2r[5]
-    received_power_v2r = v2r[6]
+    d_v2r, theta_v2r, plos_v2r, pnlos_v2r, pathloss_v2r, gain_v2r, received_power_v2r = links_relay(L, x_v2, y_v2, 0, Init.p_v2)
 
     # channel information for the link RB
-    rb = links_relay(L, Init.x_b, Init.y_b, 0, Init.p_r)
-    d_rb = rb[0]
-    theta_rb = rb[1]
-    plos_rb = rb[2]
-    pnlos_rb = rb[3]
-    pathloss_rb = rb[4]
-    gain_rb = rb[5]
-    received_power_rb = rb[6]
+    d_rb, theta_rb, plos_rb, pnlos_rb, pathloss_rb, gain_rb, received_power_rb = links_relay(L, Init.x_b, Init.y_b, 0, Init.p_r)
 
     # channel information for the link RV1
-    rv1 = links_relay(L, x_v1, y_v1, 0, Init.p_r)
-    d_rv1 = rv1[0]
-    theta_rv1 = rv1[1]
-    plos_rv1 = rv1[2]
-    pnlos_rv1 = rv1[3]
-    pathloss_rv1 = rv1[4]
-    gain_rv1 = rv1[5]
-    received_power_rv1 = rv1[6]
+    d_rv1, theta_rv1, plos_rv1, pnlos_rv1,  pathloss_rv1,  gain_rv1, received_power_rv1= links_relay(L, x_v1, y_v1, 0, Init.p_r)
 
     # channel information for the link RV1
-    rv2 = links_relay(L, x_v2, y_v2, 0, Init.p_r)
-    d_rv2 = rv2[0]
-    theta_rv2 = rv2[1]
-    plos_rv2 = rv2[2]
-    pnlos_rv2 = rv2[3]
-    pathloss_rv2 = rv2[4]
-    gain_rv2 = rv2[5]
-    received_power_rv2 = rv2[6]
+    d_rv2, theta_rv2, plos_rv2, pnlos_rv2, pathloss_rv2, gain_rv2, received_power_rv2 = links_relay(L, x_v2, y_v2, 0, Init.p_r)
 
-
+    ''' building the discrete sections of the street '''

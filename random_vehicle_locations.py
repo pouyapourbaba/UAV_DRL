@@ -23,11 +23,11 @@ def random_vehicle_locations():
     if x_v1 == 0:
         y_v1 = (b-a)*random.random() + a
         x_v2 = 0
-        y_v2 = y_v1 + (delta)*random.random()+ 5 # minimum 1m distance between the vehicles
+        y_v2 = y_v1 + (delta)*random.random()+ 2 # minimum 2m distance between the vehicles
     else:
         y_v1 = 0
         y_v2 = 0
-        x_v2 = x_v1 + (delta)*random.random() + 5
+        x_v2 = x_v1 + (delta)*random.random() + 2
 
     if prob < 0.5:
         x_s = (b-a)*random.random() + a
@@ -39,6 +39,4 @@ def random_vehicle_locations():
     else:
         y_s = 0
 
-    vehicles_locations = np.array([round(x_s), round(y_s), x_v1, y_v1, x_v2, y_v2])
-
-    return vehicles_locations
+    return (x_s), (y_s), x_v1, y_v1, x_v2, y_v2
