@@ -19,12 +19,26 @@ def uav_location(h):
     #         z[k] = h
     #         k += 1
 
-    for i in range(1, 500, 25):
-        for j in range(1, 500, 25):
-            x[k] = np.array([i-250])
-            y[k] = np.array([j-250])
+    # for i in range(2, 232, 12):
+    #     for j in range(2, 232, 12):
+    #         x[k] = np.array([i-116])
+    #         y[k] = np.array([j-116])
+    #         z[k] = h
+    #         k += 1
+
+    for i in range(4, 464, 24):
+        for j in range(4, 464, 24):
+            x[k] = np.array([i-232])
+            y[k] = np.array([j-232])
             z[k] = h
             k += 1
+
+    # for i in range(0, 500, 25):
+    #     for j in range(0, 500, 25):
+    #         x[k] = np.array([i-250])
+    #         y[k] = np.array([j-250])
+    #         z[k] = h
+    #         k += 1
 
     # converting the numpy arrays x, y, and z into pandas dataframe
     L = pd.DataFrame({"x": x, "y": y, "z": z})
