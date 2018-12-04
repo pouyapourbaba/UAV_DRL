@@ -13,8 +13,8 @@ for h in range(500, 510, 11):
     L = uav_location.uav_location(h)   # accessing the rows of the dataframe L.iloc[[i]]
 
     # scatter the UAV locations
-    # plt.scatter(L['x'], L['y'])
-    # plt.show()
+    plt.scatter(L['x'], L['y'])
+    plt.show()
 
     vehicle_locations = random_vehicle_locations.random_vehicle_locations()
     x_s = vehicle_locations[0]

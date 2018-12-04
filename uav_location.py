@@ -2,21 +2,27 @@ import numpy as np
 import pandas as pd
 
 # import local files
-from init import Init
 
 # defining the locations of the UAV
 def uav_location(h):
-    l = Init.l     # number of locations
+    l = 400    # number of locations
     k = 0
     x = np.zeros([l])   # placeholder for x coordinates
     y = np.zeros([l])   # placeholder for y coordinates
     z = np.zeros([l])   # placeholder for z coordinates
 
     # looping through the limits and filling the placeholders of the coordinates
-    for i in range(1, 116, 6):
-        for j in range(1, 116, 6):
-            x[k] = np.array([i-58])
-            y[k] = np.array([j-58])
+    # for i in range(1, 116, 6):
+    #     for j in range(1, 116, 6):
+    #         x[k] = np.array([i-58])
+    #         y[k] = np.array([j-58])
+    #         z[k] = h
+    #         k += 1
+
+    for i in range(1, 500, 25):
+        for j in range(1, 500, 25):
+            x[k] = np.array([i-250])
+            y[k] = np.array([j-250])
             z[k] = h
             k += 1
 
